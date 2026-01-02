@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld('api', {
   clearEvents: () => ipcRenderer.send('clear-events'),
   updateLoopSettings: (loops: number, infinite: boolean) => ipcRenderer.send('update-loop-settings', loops, infinite),
   getEventCount: () => ipcRenderer.invoke('get-event-count'),
+  getVersion: () => ipcRenderer.invoke('get-version'),
 
   // Event listeners
   onEventCount: (callback: (count: number) => void) => {

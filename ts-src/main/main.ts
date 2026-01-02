@@ -3,8 +3,30 @@
  */
 
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { autoUpdater } from 'electron';
 import { updateElectronApp } from 'update-electron-app';
-updateElectronApp()
+
+// Setup auto-updater with notification
+updateElectronApp({
+  notifyUser: false // We'll handle notification ourselves
+});
+
+// Auto-updater events
+autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+  const dialogOpts: Electron.MessageBoxOptions = {
+    type: 'info',
+    buttons: ['今すぐ再起動', '後で'],
+    title: 'アップデート',
+    message: releaseName || 'アップデート',
+    detail: '新しいバージョンがダウンロードされました。再起動してアップデートを適用します。'
+  };
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) {
+      autoUpdater.quitAndInstall();
+    }
+  });
+});
 
 // Disable hardware acceleration to prevent GPU crashes
 app.disableHardwareAcceleration();
@@ -196,6 +218,7 @@ function setupIPC(): void {
     infiniteLoop = infinite;
   });
   ipcMain.handle('get-event-count', () => events.length);
+  ipcMain.handle('get-version', () => app.getVersion());
 }
 
 app.whenReady().then(() => {

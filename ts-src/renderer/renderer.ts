@@ -17,6 +17,7 @@ interface API {
   clearEvents: () => void;
   updateLoopSettings: (loops: number, infinite: boolean) => void;
   getEventCount: () => Promise<number>;
+  getVersion: () => Promise<string>;
   onEventCount: (callback: (count: number) => void) => void;
   onRecordStart: (callback: () => void) => void;
   onRecordStop: (callback: (count: number) => void) => void;
@@ -183,6 +184,19 @@ function addLog(message: string): void {
   updateEventCount();
   updateUI();
   syncLoopSettings(); // Sync initial loop settings
+})();
+
+// Display version (separate to avoid blocking main init)
+(async () => {
+  try {
+    const version = await api.getVersion();
+    const versionEl = document.getElementById('version-info');
+    if (versionEl) {
+      versionEl.textContent = `v${version}`;
+    }
+  } catch (e) {
+    console.error('Failed to get version:', e);
+  }
 })();
 
 } // End of initialization guard

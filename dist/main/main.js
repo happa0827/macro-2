@@ -37,6 +37,27 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
+const electron_2 = require("electron");
+const update_electron_app_1 = require("update-electron-app");
+// Setup auto-updater with notification
+(0, update_electron_app_1.updateElectronApp)({
+    notifyUser: false // We'll handle notification ourselves
+});
+// Auto-updater events
+electron_2.autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+        type: 'info',
+        buttons: ['今すぐ再起動', '後で'],
+        title: 'アップデート',
+        message: releaseName || 'アップデート',
+        detail: '新しいバージョンがダウンロードされました。再起動してアップデートを適用します。'
+    };
+    electron_1.dialog.showMessageBox(dialogOpts).then((returnValue) => {
+        if (returnValue.response === 0) {
+            electron_2.autoUpdater.quitAndInstall();
+        }
+    });
+});
 // Disable hardware acceleration to prevent GPU crashes
 electron_1.app.disableHardwareAcceleration();
 // Disable GPU cache to prevent "Unable to move the cache" errors on Windows
@@ -200,6 +221,7 @@ function setupIPC() {
         infiniteLoop = infinite;
     });
     electron_1.ipcMain.handle('get-event-count', () => events.length);
+    electron_1.ipcMain.handle('get-version', () => electron_1.app.getVersion());
 }
 electron_1.app.whenReady().then(() => {
     setupComponents();

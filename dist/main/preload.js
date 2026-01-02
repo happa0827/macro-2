@@ -14,6 +14,7 @@ electron_1.contextBridge.exposeInMainWorld('api', {
     clearEvents: () => electron_1.ipcRenderer.send('clear-events'),
     updateLoopSettings: (loops, infinite) => electron_1.ipcRenderer.send('update-loop-settings', loops, infinite),
     getEventCount: () => electron_1.ipcRenderer.invoke('get-event-count'),
+    getVersion: () => electron_1.ipcRenderer.invoke('get-version'),
     // Event listeners
     onEventCount: (callback) => {
         electron_1.ipcRenderer.on('event-count', (_, count) => callback(count));
