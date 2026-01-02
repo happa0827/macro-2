@@ -1,7 +1,7 @@
 {
   "name": "click-macro-recorder",
   "productName": "Click Macro Recorder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mouse/Keyboard Macro Recorder",
   "main": "dist/main/main.js",
   "scripts": {
@@ -29,7 +29,8 @@
   "dependencies": {
     "@nut-tree-fork/nut-js": "^4.2.0",
     "electron-squirrel-startup": "^1.0.1",
-    "uiohook-napi": "^1.5.0"
+    "uiohook-napi": "^1.5.0",
+    "update-electron-app": "^3.1.2"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.8.3",
@@ -44,5 +45,9 @@
     "@types/node": "^20.10.0",
     "electron": "39.2.7",
     "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/happa0827/macro-2.git"
   }
 }

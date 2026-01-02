@@ -3,7 +3,9 @@
  * Event data structure definitions
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isKeyboardEvent = exports.isMouseEvent = exports.MouseButton = exports.EventType = void 0;
+exports.MouseButton = exports.EventType = void 0;
+exports.isMouseEvent = isMouseEvent;
+exports.isKeyboardEvent = isKeyboardEvent;
 var EventType;
 (function (EventType) {
     // Mouse events
@@ -23,9 +25,7 @@ var MouseButton;
 function isMouseEvent(event) {
     return [EventType.MOUSE_MOVE, EventType.MOUSE_CLICK, EventType.MOUSE_SCROLL].includes(event.eventType);
 }
-exports.isMouseEvent = isMouseEvent;
 function isKeyboardEvent(event) {
     return [EventType.KEY_PRESS, EventType.KEY_RELEASE].includes(event.eventType);
 }
-exports.isKeyboardEvent = isKeyboardEvent;
 //# sourceMappingURL=events.js.map

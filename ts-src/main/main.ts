@@ -3,6 +3,8 @@
  */
 
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { updateElectronApp } from 'update-electron-app';
+updateElectronApp()
 
 // Disable hardware acceleration to prevent GPU crashes
 app.disableHardwareAcceleration();
