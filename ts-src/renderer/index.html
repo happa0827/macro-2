@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-  <title>Click - Macro Recorder</title>
+  <title>Click - マクロレコーダー</title>
   <style>
     * {
       box-sizing: border-box;
@@ -181,51 +181,51 @@
 <body>
   <div class="container">
     <div class="section">
-      <div class="section-title">Status</div>
+      <div class="section-title">ステータス</div>
       <div class="status-row">
-        <span id="status">Idle</span>
-        <span id="event-count">Events: 0</span>
+        <span id="status">待機中</span>
+        <span id="event-count">イベント: 0</span>
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">Control</div>
+      <div class="section-title">操作</div>
       <div class="button-row">
-        <button id="record-btn" class="btn-primary">Record (F9)</button>
-        <button id="play-btn" class="btn-success">Play (F10)</button>
-        <button id="stop-btn" class="btn-danger">Stop (F11)</button>
+        <button id="record-btn" class="btn-primary">録画 (F9)</button>
+        <button id="play-btn" class="btn-success">再生 (F10)</button>
+        <button id="stop-btn" class="btn-danger">停止 (F11)</button>
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">Loop Settings</div>
+      <div class="section-title">ループ設定</div>
       <div class="loop-row">
-        <label for="loop-count">Loop count:</label>
+        <label for="loop-count">ループ回数:</label>
         <input type="number" id="loop-count" value="1" min="1">
         <label class="checkbox-label">
           <input type="checkbox" id="infinite-loop">
-          Infinite
+          無限
         </label>
       </div>
     </div>
 
     <div class="section">
-      <div class="section-title">File</div>
+      <div class="section-title">ファイル</div>
       <div class="button-row" style="margin-bottom: 8px;">
-        <button id="save-btn" class="btn-secondary">Save</button>
-        <button id="open-btn" class="btn-secondary">Open</button>
-        <button id="clear-btn" class="btn-secondary">Clear</button>
+        <button id="save-btn" class="btn-secondary">保存</button>
+        <button id="open-btn" class="btn-secondary">開く</button>
+        <button id="clear-btn" class="btn-secondary">クリア</button>
       </div>
-      <div id="file-path">File: (not saved)</div>
+      <div id="file-path">ファイル: (未保存)</div>
     </div>
 
     <div class="section">
-      <div class="section-title">Event Log</div>
+      <div class="section-title">イベントログ</div>
       <div class="log-area" id="log-area"></div>
     </div>
 
     <div class="hotkey-info">
-      Hotkeys: F9=Record Start/Stop, F10=Play, F11=Stop
+      ホットキー: F9=録画開始/停止, F10=再生, F11=停止
       <div id="version-info"></div>
     </div>
   </div>

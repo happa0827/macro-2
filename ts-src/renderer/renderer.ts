@@ -118,25 +118,25 @@ api.onPlayStop(() => {
 
 api.onPlayLoop((current, total) => {
   if (total === 0) {
-    statusEl.textContent = `Playing... (Loop ${current}/Infinite)`;
+    statusEl.textContent = `再生中... (ループ ${current}/無限)`;
   } else {
-    statusEl.textContent = `Playing... (Loop ${current}/${total})`;
+    statusEl.textContent = `再生中... (ループ ${current}/${total})`;
   }
 });
 
 api.onFileSaved((path) => {
-  filePathEl.textContent = `File: ${path}`;
+  filePathEl.textContent = `ファイル: ${path}`;
 });
 
 api.onFileOpened((path, count) => {
-  filePathEl.textContent = `File: ${path}`;
+  filePathEl.textContent = `ファイル: ${path}`;
   eventCount = count;
   updateEventCount();
 });
 
 api.onEventsCleared(() => {
   eventCount = 0;
-  filePathEl.textContent = 'File: (not saved)';
+  filePathEl.textContent = 'ファイル: (未保存)';
   updateEventCount();
 });
 
@@ -147,18 +147,18 @@ api.onLog((message) => {
 // UI update functions
 function updateUI(): void {
   if (isRecording) {
-    statusEl.textContent = 'Recording...';
-    recordBtn.textContent = 'Stop Recording (F9)';
+    statusEl.textContent = '録画中...';
+    recordBtn.textContent = '録画停止 (F9)';
     recordBtn.classList.remove('btn-primary');
     recordBtn.classList.add('btn-recording');
     playBtn.disabled = true;
   } else if (isPlaying) {
-    statusEl.textContent = 'Playing...';
+    statusEl.textContent = '再生中...';
     recordBtn.disabled = true;
     playBtn.disabled = true;
   } else {
-    statusEl.textContent = 'Idle';
-    recordBtn.textContent = 'Record (F9)';
+    statusEl.textContent = '待機中';
+    recordBtn.textContent = '録画 (F9)';
     recordBtn.classList.remove('btn-recording');
     recordBtn.classList.add('btn-primary');
     recordBtn.disabled = false;
@@ -167,7 +167,7 @@ function updateUI(): void {
 }
 
 function updateEventCount(): void {
-  eventCountEl.textContent = `Events: ${eventCount}`;
+  eventCountEl.textContent = `イベント: ${eventCount}`;
 }
 
 function addLog(message: string): void {
